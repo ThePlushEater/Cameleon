@@ -17,7 +17,7 @@ export default class extends Phaser.State {
       active: this.fontsLoaded,
     });
 
-    let text = this.add.text(this.world.centerX, this.world.centerY, 'Loading fonts', { font: '24px Arial', fill: '#000000', align: 'center' });
+    let text = this.add.text(this.world.centerX, this.world.centerY, 'Loading fonts', { font: '20px Arial', fill: '#000000', align: 'center' });
     text.anchor.setTo(0.5, 0.5);
 
     this.load.image('loaderBg', './assets/images/loader-background.png');

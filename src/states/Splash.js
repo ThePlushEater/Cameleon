@@ -1,6 +1,6 @@
 import Phaser from 'phaser'
 import { centerGameObjects } from '../utils'
-import { setResponsiveHeight } from '../utils'
+import { setResponsiveWidth } from '../utils'
 
 export default class extends Phaser.State {
   init () {}
@@ -8,7 +8,7 @@ export default class extends Phaser.State {
   preload () {
     this.loaderBg = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'loaderBg');
     this.loaderBg.anchor.setTo(0.5, 0.5);
-    setResponsiveHeight(this.loaderBg, 100, this.game.world);
+    setResponsiveWidth(this.loaderBg, 100, this.game.world);
     // let width = window.game.scale.width;
     // let height = window.game.scale.height;
 

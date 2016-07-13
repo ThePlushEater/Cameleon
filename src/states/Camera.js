@@ -1,9 +1,11 @@
 /* globals __DEV__ */
 import Phaser from 'phaser';
-import { setResponsiveHeight } from '../utils';
+import { setResponsiveWidth } from '../utils';
 
 import $ from 'jquery';
 require('webrtc-adapter');
+
+import Settings from './../constraints/Settings.json';
 
 export default class extends Phaser.State {
   init () {
@@ -16,7 +18,7 @@ export default class extends Phaser.State {
         'left': parseInt($('canvas').css('margin-left')) + parseInt($('canvas').innerWidth() * 0.05),
       });
 
-      $('#content').append('<img id="video-frame" src="./../assets/images/video-frame.png" />');
+      $('#content').append('<img id="video-frame" src="' + Settings.uRootDir + '/assets/images/video-frame.png" />');
       $('#video-frame').css({
         'width': parseInt($('canvas').innerWidth()),
         'height': parseInt($('canvas').innerWidth() * 6 / 8),
@@ -35,7 +37,7 @@ export default class extends Phaser.State {
     this.handleSuccess = this.handleSuccess.bind(this);
     this.handleError = this.handleError.bind(this);
 
-    navigator.mediaDevices.getUserMedia(this.constraints).then(this.handleSuccess);//.catch(this.handleError);
+    navigator.mediaDevices.getUserMedia(this.constraints).then(this.handleSuccess).catch(this.handleError);
 
   }
 
@@ -51,6 +53,7 @@ export default class extends Phaser.State {
   }
 
   handleError(error) {
+    alert(error);
     if (error.name === 'ConstraintNotSatisfiedError') {
       this.errorMsg('The resolution ' + constraints.video.width.exact + 'x' + constraints.video.width.exact + ' px is not supported by your device.');
     } else if (error.name === 'PermissionDeniedError') {
@@ -60,16 +63,16 @@ export default class extends Phaser.State {
   }
 
   errorMsg(msg, error) {
-    console.log(msg);
+    alert(msg);
     if (typeof error !== 'undefined') {
-      console.error(error);
+      console.log(error);
     }
   }
 
   preload () {
     this.homeBg = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'homeBg');
     this.homeBg.anchor.setTo(0.5, 0.5);
-    setResponsiveHeight(this.homeBg, 100, this.game.world);
+    setResponsiveWidth(this.homeBg, 100, this.game.world);
   }
 
   create () {}
