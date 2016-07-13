@@ -19,12 +19,13 @@ export default class extends Phaser.State {
     //
     // load your assets
     //
-    this.load.image('mushroom', 'assets/images/cameloen.png');
+    this.load.image('homeBg', 'assets/images/home-background.png');
+    this.load.spritesheet('cameraBtn', 'assets/images/camera-button.png', 414, 130);
   }
 
   create () {
     setTimeout(function(self) {
-      self.state.start('Game');
-    }, 2500, this);
+      self.state.start('Home');
+    }, 1500, this);
   }
 }

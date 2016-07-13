@@ -1,10 +1,11 @@
-import 'pixi'
-import 'p2'
-import Phaser from 'phaser'
+import 'pixi';
+import 'p2';
+import Phaser from 'phaser';
 
-import BootState from './states/Boot'
-import SplashState from './states/Splash'
-import GameState from './states/Game'
+import BootState from './states/Boot';
+import SplashState from './states/Splash';
+import HomeState from './states/Home';
+import CameraState from './states/Camera';
 
 class Game extends Phaser.Game {
   constructor () {
@@ -15,7 +16,8 @@ class Game extends Phaser.Game {
 
     this.state.add('Boot', BootState, false);
     this.state.add('Splash', SplashState, false);
-    this.state.add('Game', GameState, false);
+    this.state.add('Home', HomeState, false);
+    this.state.add('Camera', CameraState, false);
 
     this.state.start('Boot');
   }
